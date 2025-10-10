@@ -271,6 +271,7 @@ packages_select_by_deps:
       - as2_msgs
       - as2_core
       - as2_motion_reference_handlers
+      - as2_behavior
       # autoware
       - autoware_common_msgs
       - autoware_control_msgs

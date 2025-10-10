@@ -1,0 +1,14 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1234567..2345678 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -26,6 +26,9 @@
+   std_srvs
+ )
+ 
++# Add GeographicLib as transitive dependency from as2_core
++find_package(GeographicLib REQUIRED)
++
+ foreach(DEPENDENCY ${PROJECT_DEPENDENCIES})
+   find_package(${DEPENDENCY} REQUIRED)
+ endforeach()
