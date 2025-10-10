@@ -267,6 +267,9 @@ packages_select_by_deps:
       - rqt_controller_manager
       - open3d_conversions
       - lanelet2
+      # aerostack2
+      - as2_msgs
+      - as2_core
       # autoware
       - autoware_common_msgs
       - autoware_control_msgs

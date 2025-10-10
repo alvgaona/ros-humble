@@ -1,0 +1,46 @@
+diff --git a/include/as2_core/rate.hpp b/include/as2_core/rate.hpp
+index 1234567..2345678 100644
+--- a/include/as2_core/rate.hpp
++++ b/include/as2_core/rate.hpp
+@@ -54,6 +54,7 @@ class RateBase
+ public:
+   RCLCPP_SMART_PTR_DEFINITIONS_NOT_COPYABLE(RateBase) // NOLINT
+ 
++  virtual ~RateBase() = default;
+   virtual bool sleep() = 0;
+   virtual bool is_steady() const = 0;
+   virtual void reset() = 0;
+@@ -78,6 +79,8 @@ public:
+   {
+   }
+ 
++  virtual ~GenericRate() = default;
++
+   virtual bool sleep()
+   {
+     // Time coming into sleep
+diff --git a/src/utils/control_mode_utils.cpp b/src/utils/control_mode_utils.cpp
+index 3456789..4567890 100644
+--- a/src/utils/control_mode_utils.cpp
++++ b/src/utils/control_mode_utils.cpp
+@@ -194,7 +194,7 @@ as2_msgs::msg::ControlMode convertUint8tToAS2ControlMode(uint8_t control_mode_u
+     mode.yaw_mode = as2_msgs::msg::ControlMode::YAW_SPEED;
+   } else if ((control_mode_uint8t & 0b00000110) == 0b00000000) {
+     mode.yaw_mode = as2_msgs::msg::ControlMode::YAW_ANGLE;
+-  } else if ((control_mode_uint8t & 0b00000110) == 0b00001000) {
++  } else if ((control_mode_uint8t & 0b00001100) == 0b00001000) {
+     mode.yaw_mode = as2_msgs::msg::ControlMode::NONE;
+   } else {
+     RCLCPP_ERROR(rclcpp::get_logger("as2_mode"), "Yaw mode not recognized");
+diff --git a/tests/mocks/CMakeLists.txt b/tests/mocks/CMakeLists.txt
+index 1234567..2345678 100644
+--- a/tests/mocks/CMakeLists.txt
++++ b/tests/mocks/CMakeLists.txt
+@@ -8,6 +8,7 @@ set(MOCK_SOURCES
+ 
+ add_library(${MOCKS_LIBRARY_NAME} SHARED ${MOCK_SOURCES})
+ ament_target_dependencies(${MOCKS_LIBRARY_NAME} ${PROJECT_DEPENDENCIES})
++target_link_libraries(${MOCKS_LIBRARY_NAME} ${PROJECT_NAME})
+ 
+ install(
+   DIRECTORY tests/mocks/
