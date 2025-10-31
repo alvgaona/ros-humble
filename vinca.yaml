@@ -432,6 +432,7 @@ packages_select_by_deps:
       # aerostack2
       - as2_cli
       - as2_msgs
+      - as2_core
 
       - ign_ros2_control
       - gz_ros2_control
