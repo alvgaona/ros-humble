@@ -369,6 +369,7 @@ packages_select_by_deps:
       # Franka robots suppot
       # See https://github.com/RoboStack/ros-humble/pull/338#issuecomment-3146453142 for macos and Windows errors
       - franka_ros2
+      - psdk_wrapper
 
 
   # These packages are currently not build on Windows, but they may with some work
@@ -435,6 +436,7 @@ packages_select_by_deps:
       # aerostack2
       - as2_cli
       - as2_msgs
+      - psdk_interfaces
 
       - ign_ros2_control
       - gz_ros2_control
